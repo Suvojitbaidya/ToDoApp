@@ -1,0 +1,183 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #27074a, #e55c8a); /* Gradient background */
+  margin: 0;
+  height: 100vh;
+  overflow: hidden; /* Prevents scroll due to falling balls */
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.ta-wrapper {
+  background: #3c424a;
+  color: white;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 0 7px 7px rgb(0 0 0 / 20%);
+  min-height: 300px;
+  position: relative;
+  z-index: 1;
+  margin: 20px;
+}
+
+/* Create an animated border effect */
+.ta-wrapper:before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, #e55c8a, #8e44ad, #27074a, #e55c8a);
+  background-size: 400% 400%;
+  border-radius: 8px;
+  z-index: -1;
+  animation: borderMove 5s linear infinite;
+}
+
+@keyframes borderMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.heading h1 {
+  text-align: center;
+  color: white;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.input-wrapper {
+  margin-bottom: 20px;
+}
+
+.input-wrapper input {
+  outline: none;
+  border: 2px solid #e55c8a;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  color: white;
+  width: 500px;
+}
+
+.input-wrapper button {
+  background: #e55c8a;
+  color: white;
+  border: 2px solid #e55c8a;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.todo-item input {
+  background: transparent;
+  border: navajowhite;
+  color: white;
+  outline: none;
+}
+
+.todo-item i {
+  color: #e55c8a;
+  background: transparent;
+  border: 1px solid;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  margin-left: 5px;
+}
+
+.todo-item button:hover {
+  color: white;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.fa-x {
+  padding: 6px 8px !important;
+}
+
+/* Falling balls animation */
+.ball {
+  position: absolute;
+  top: -10%; /* Start above the viewport */
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: fall linear infinite; /* Animation for falling */
+}
+
+/* Different sizes for balls */
+.ball.size-1 {
+  width: 10px; /* Small ball */
+  height: 10px;
+  animation-duration: 2.5s;
+}
+
+.ball.size-2 {
+  width: 15px; /* Medium ball */
+  height: 15px;
+  animation-duration: 3s;
+}
+
+.ball.size-3 {
+  width: 20px; /* Large ball */
+  height: 20px;
+  animation-duration: 3.5s;
+}
+
+.ball.size-4 {
+  width: 25px; /* Extra large ball */
+  height: 25px;
+  animation-duration: 4s;
+}
+
+.ball.size-5 {
+  width: 30px; /* Huge ball */
+  height: 30px;
+  animation-duration: 4.5s;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh); /* Move down the screen */
+    opacity: 0; /* Fade out */
+  }
+}
+
